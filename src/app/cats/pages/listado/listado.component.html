@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction:row; justify-content: space-between; padding: 0px 20px;">
+    <h1>Listado {{ url !== '/cats/mi-listado' ? 'random de': 'de mis'}} gatitos</h1>
+    <button mat-button color="primary" (click)="obtenerGatitos()"> Nuevo listado </button>
+</div>
+
+<mat-divider></mat-divider>
+<br>
+<h1 *ngIf="!cats">Cargando...</h1>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="15px">
+    <div fxFlex="20" fxFlex.lg="15" fxFlex.sm="30" *ngFor="let cat of cats">
+       <app-gato-tarjeta [cat]="cat"></app-gato-tarjeta>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<h1>{{cat.id? 'Editar': 'Nuevo'}} gatito </h1>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutGap="40px">
+
+    <div fxFlex="50" fxLayout="column">
+
+        <div fxLayout="row"
+             fxLayout.xs="column" 
+             fxLayoutGap="20px">
+
+            <mat-form-field fxFlex="100">
+                <mat-label>Raza gatito</mat-label>
+                <input matInput
+                       type="text"
+                       [(ngModel)]="cat.breeds[0].name"
+                       required >
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="100">
+                <mat-label>Nombre gatito</mat-label>
+                <input matInput
+                       type="text"
+                       [(ngModel)]="cat.breeds[0].alt_names"
+                       required >
+            </mat-form-field>
+        </div>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Temperamento</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="cat.breeds[0].temperament"
+                   required >
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Descripción</mat-label>
+            <input matInput
+                   type="text"
+                   [(ngModel)]="cat.breeds[0].description"
+                   required >
+        </mat-form-field>
+        
+        <mat-form-field fxFlex="100">
+            <mat-label>Origen</mat-label>
+            <mat-select required [(ngModel)]="cat.breeds[0].origin">
+                <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+                    {{publisher.desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100">
+            <mat-label>Foto URL</mat-label>
+            <input matInput
+                   type="url"
+                   [(ngModel)]="cat.url"
+                   required >
+        </mat-form-field>
+        <br>
+
+        <div fxLayout>
+            <button mat-raised-button color="primary" (click)="guardar()">
+                <mat-icon>edit</mat-icon>
+                {{cat.id? 'Actualizar': 'Guardar'}}
+            </button>
+            <span class="spacer"></span>
+            <button *ngIf="cat.id" mat-raised-button color="warn" (click)="borrarGatito()">
+                <mat-icon>remove</mat-icon>
+                Borrar
+            </button>
+        </div>
+    </div>
+
+    <div fxFlex="50">
+        <img [src]="cat.url">
+    </div>
+
+</div>
+
+

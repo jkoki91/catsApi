@@ -1,0 +1,27 @@
+<mat-card *ngIf="cat; else loading" layout-align="center end">
+    <mat-card-header>
+        <mat-card-title> {{cat.breeds[0].name}} </mat-card-title>
+        <mat-card-subtitle>Origen: {{cat.breeds[0].origin}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]=" cat.url ">
+    <mat-card-content>
+        <h3>Descripción:</h3>
+        <p>
+            <strong>{{cat.breeds[0].temperament}} </strong>
+        </p>
+    </mat-card-content>
+    <mat-card-actions layout="row" layout-align="space-between center">
+        <a *ngIf="!editable" mat-button [href]="cat.breeds[0].wikipedia_url" target="_blank" color="warn">
+            Leer mas...
+        </a>
+        <button *ngIf="!editable" mat-button color="info" (click)="anadirGatito()">
+            Añadir...
+        </button>
+        <button *ngIf="editable" mat-button color="info" [routerLink]="['/cats/editar', cat.id ]">
+            Editar...
+        </button>
+    </mat-card-actions>
+</mat-card>
+<ng-template #loading>
+    <h2> Cargando... </h2>
+</ng-template>

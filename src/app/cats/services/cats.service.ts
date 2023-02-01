@@ -10,8 +10,9 @@ import { Gato, GatoBreed } from '../interfaces/gatos.interface';
 export class CatsService {
 
   private baseUrl: string = 'https://api.thecatapi.com/v1';
-  private baseUrlLocal: string = 'http://localhost:3000';
-  private apiKey: string = 'live_6QHggxRxUmLebqWSqfSfB30rz5cBsN4LqP9k2vmzxuTUg96LDw3Cr9bQ4mjpJ9m0';
+  private baseUrlLocal: string = environment.baseUrl;
+  private apiKey: string | undefined = environment.apiKey;
+  // private apiKey: string | undefined = 'apiKey en correo electrónico';
 
   constructor( private http : HttpClient) { }
 
@@ -50,4 +51,4 @@ export class CatsService {
   borrarGatito( id: string ) : Observable<any> {
     return this.http.delete<any>(`${this.baseUrlLocal}/cats/${id}`);
   }
-}
+};
